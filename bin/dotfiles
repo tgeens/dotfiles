@@ -51,6 +51,21 @@ install_dotfiles () {
   success 'installing dotfiles'
 }
 
+install_gpgfiles () {
+    info 'installing gpg files'
+
+    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 3 -name '*.gpg')
+    do  
+        info "  src: ${src}"
+
+        dst=$HOME/$(dirname ${src#${DOTFILES_ROOT}/*/})/$(basename "${src%.*}")
+	dst=$($BIN_REALPATH -sm ${dst})
+
+	echo "gpg --decrypt $src --output $dst"
+    done
+}
+
+
 link_file () {
 
   local src=$1 dst=$2
@@ -130,3 +145,4 @@ link_file () {
 }
 
 install_dotfiles
+install_gpgfiles
