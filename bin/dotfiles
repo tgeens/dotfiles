@@ -5,6 +5,7 @@
 cd "$(dirname $0)/.."
 DOTFILES_ROOT=$(pwd -P)
 
+# Check for available/required utilities
 case "$(uname -s)" in
   Darwin) BIN_REALPATH=$(which grealpath) ;;
   *) BIN_REALPATH=$(which realpath) ;;
@@ -61,8 +62,11 @@ install_gpgfiles () {
         dst=$HOME/$(dirname ${src#${DOTFILES_ROOT}/*/})/$(basename "${src%.*}")
 	dst=$($BIN_REALPATH -sm ${dst})
 
-	echo "gpg --decrypt $src --output $dst"
+	info "decrypting ${src} with gpg => ${dst}"
+	gpg --output ${dst} --decrypt ${src}
     done
+
+    success 'installing gpg files'
 }
 
 
