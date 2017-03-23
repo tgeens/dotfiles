@@ -1,0 +1,76 @@
+syn on
+
+set autoindent              " always set autoindenting on
+set smartindent             " use smart indent if there is no indent file
+" set shiftround              " rounds indent to a multiple of shiftwidth
+
+set hls 
+set incsearch
+
+set number
+
+au BufNewFile,BufRead *.nsh set syn=nsis
+au BufNewFile,BufRead *.xml.ftl set syn=xml
+au BufNewFile,BufRead *.html.ftl set syn=html
+au BufNewFile,BufRead *.json set syn=javascript
+au BufNewFile,BufRead *.py call TabMode(1)
+
+" Use the below highlight group when displaying bad whitespace is desired.
+highlight BadWhitespace ctermbg=red guibg=red
+
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+nnoremap <F3> :set nonumber!<CR>
+
+" virtual tabstops using spaces
+"set tabstop=4               " <tab> inserts 4 spaces 
+"set shiftwidth=4            " but an indent level is 2 spaces wide.
+"set softtabstop=4           " <BS> over an autoindent deletes both spaces.
+"set expandtab               " Use spaces, not tabs, for autoindent/tab key.
+let _tabmode=0
+let _tabmodePrev=0
+
+set shiftwidth=4
+set softtabstop=4
+set noexpandtab
+
+function! TabMode(newMode)
+    let g:_tabmodePrev = g:_tabmode
+    let g:_tabmode = a:newMode
+    if (g:_tabmode == 4)
+        let g:_tabmode = 0
+    endif
+    
+    if (g:_tabmode == 0)
+        set shiftwidth=4
+        set softtabstop=4
+        set noexpandtab
+        "echo 'Tabmode: 4 spaces, no expand'
+    elseif (g:_tabmode == 1)
+        set shiftwidth=4
+        set softtabstop=4
+        set expandtab
+        "echo 'Tabmode: 4 spaces, expanded'
+    elseif (g:_tabmode == 2)
+        set shiftwidth=2
+        set softtabstop=2
+        set noexpandtab
+        "echo 'Tabmode: 2 spaces, no expand'
+    elseif (g:_tabmode == 3)
+        set shiftwidth=2
+        set softtabstop=2
+        set expandtab
+        "echo 'Tabmode: 2 spaces, expanded'
+    endif
+endfunction
+map <F4> mz:execute TabMode(g:_tabmode + 1)<CR>
+
+command W w !sudo tee % > /dev/null
