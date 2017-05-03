@@ -56,7 +56,7 @@ fi;
 
 # Highlight the user name when logged in as root.
 userStyle="\$(if [ \$(id -u) -eq 0 ]; then echo ${red}; else echo ${blue}; fi)";
-gitPrompt="\$(if [ \$(id -u) -ne 0 ]; then echo ${yellow} $(__git_ps1 "[%s]") ; fi)";
+gitPrompt="\$(if [ \$(id -u) -ne 0 ]; then echo \[${yellow}\] \$(__git_ps1 \"[%s]\") ; fi)";
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
