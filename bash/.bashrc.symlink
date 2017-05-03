@@ -13,16 +13,13 @@ fi
 # source *.bash files from dotfiles
 # first find the path where the dotfiles are stored
 DIR_DOTFILES=$(dirname $(dirname $(readlink -m ~/.bashrc)))
-find $DIR_DOTFILES -name '*.bash' | while read source_bash
+for source_bash in $(find $DIR_DOTFILES -name '*.bash' -o -name '*.sh')
 do
     if [[ -r "$source_bash" ]] && [[ -f "$source_bash" ]]; then
-	    #echo "source ${source_bash}"
+	    echo "source ${source_bash}"
 	    source "$source_bash"
     fi
 done
 unset source_bash
-
-# Somehow sourcing this at `git-prompt.bash` does not work ?
-source ${DIR_DOTFILES}/git/git-prompt.sh
 
 source $(readlink ~/.bash_prompt)
