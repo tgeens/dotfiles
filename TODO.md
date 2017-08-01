@@ -1,0 +1,1 @@
+* (git) diff color for addition is grey instead of green
