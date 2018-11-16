@@ -1,0 +1,9 @@
+
+TIMESTAMP=$(date --iso-8601=minutes)
+REPO=$(basename $(pwd))
+BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+COMMIT_MSG=$(git log --oneline | head -1)
+
+OUTPUT=~/.git-hooks/commit.log
+
+echo $TIMESTAMP $REPO $BRANCH $COMMIT_MSG >> $OUTPUT
