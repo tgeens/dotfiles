@@ -23,3 +23,5 @@ done
 unset source_bash
 
 source $(readlink ~/.bash_prompt)
+
+complete -C /home/toon/bin/vault vault

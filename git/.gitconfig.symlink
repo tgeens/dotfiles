@@ -35,6 +35,8 @@
 [core]
 	autocrlf = input
 	excludesfile = ~/.gitignore
+	editor = vim
+	hooksPath = /home/toon/.git-hooks
 [mergetool "sublime"]
 	cmd = subl -w $MERGED
 	trustExitCode = false
@@ -45,5 +47,7 @@
 	default = current
 [colors]
 	ui = true
-[branch]
-	autosetuprebase = always
+[pull]
+	rebase = true
+[diff]
+	noprefix = true
