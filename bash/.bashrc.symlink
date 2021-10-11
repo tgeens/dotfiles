@@ -16,12 +16,17 @@ DIR_DOTFILES=$(dirname $(dirname $(readlink -m ~/.bashrc)))
 for source_bash in $(find $DIR_DOTFILES -name '*.bash' -o -name '*.sh')
 do
     if [[ -r "$source_bash" ]] && [[ -f "$source_bash" ]]; then
-	    echo "source ${source_bash}"
+	    # echo "source ${source_bash}"
 	    source "$source_bash"
     fi
 done
 unset source_bash
 
 source $(readlink ~/.bash_prompt)
+
+# User specific environment and startup programs
+PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.npm/bin
+# export PATH
+
 
 complete -C /home/toon/bin/vault vault
