@@ -45,7 +45,8 @@ install_dotfiles () {
   do
     dst=$HOME/$(dirname ${src#${DOTFILES_ROOT}/*/})/$(basename "${src%.*}")
     dst=$($BIN_REALPATH -sm ${dst})
-#    dst="$HOME/$(basename "${src%.*}")"
+    # make sure target directory exists
+    mkdir -p $(dirname $dst)
     link_file "$src" "$dst"
   done
 
