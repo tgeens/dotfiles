@@ -18,8 +18,8 @@ echo ''
 source bin/io.sh
 
 # find the installers and run them iteratively
-info "Running installers (all executable install-*.sh files)"
-find . -executable -name "install-*.sh" | while read installer ; do 
+info "Running installers (all executable install-* files)"
+find . -executable -name "install-*" | while read installer ; do 
   # info "- installing ${installer} ";
   sh -c "${installer}" ;
 done
