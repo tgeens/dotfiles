@@ -36,7 +36,7 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore
 	editor = vim
-	hooksPath = /home/tgeens/.git-hooks
+	hooksPath = /home/tgeens/git/hooks
 [mergetool "sublime"]
 	cmd = subl -w $MERGED
 	trustExitCode = false
