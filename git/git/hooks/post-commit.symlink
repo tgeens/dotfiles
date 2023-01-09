@@ -4,7 +4,7 @@ REPO=$(basename $(pwd))
 BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
 COMMIT_MSG=$(git log --oneline | head -1)
 
-OUTPUT=$(dirname $(dirname $(realpath -s "$0")))/logs/commit.log
+OUTPUT=$(dirname $(dirname $(realpath -s "$0")))/logs/$(date +%Y-%m)-commit.log
 mkdir -p $(dirname $OUTPUT)
 
 echo $TIMESTAMP $REPO $BRANCH $COMMIT_MSG >> $OUTPUT
