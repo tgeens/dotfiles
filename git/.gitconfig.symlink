@@ -1,6 +1,6 @@
 [user]
 	name = Toon Geens
-	email = toon.geens@xenit.eu
+	email = toon.geens@materialise.be
 [alias]
 	st = status
 	ci = commit
@@ -53,3 +53,5 @@
 	noprefix = true
 [diff "xls"]
 	textconv=xls2csv
+[init]
+	defaultBranch = main
